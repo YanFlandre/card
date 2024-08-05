@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -64,7 +65,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingText(message: String, from: String, email: String, numero: String, modifier: Modifier = Modifier) {
+fun GreetingText(
+    message: String,
+    from: String,
+    email: String,
+    numero: String,
+    modifier: Modifier = Modifier
+) {
     // Create a column so that texts don't overlap
     Column(
         verticalArrangement = Arrangement.Center,
@@ -108,15 +115,27 @@ fun GreetingText(message: String, from: String, email: String, numero: String, m
 }
 
 @Composable
-fun GreetingImage(message: String, from: String, email: String, numero: String, modifier: Modifier = Modifier) {
+fun GreetingImage(
+    message: String,
+    from: String,
+    email: String,
+    numero: String,
+    modifier: Modifier = Modifier
+) {
     // Create a box to overlap image and texts
     Box(modifier) {
-        Image(
-            painter = painterResource(id = R.drawable.android_logo),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         )
+        {
+            Image(
+                painter = painterResource(id = R.drawable.android_logo),
+                contentDescription = null,
+                modifier = Modifier.size(150.dp),
+            )
+        }
         GreetingText(
             message = message,
             from = from,
