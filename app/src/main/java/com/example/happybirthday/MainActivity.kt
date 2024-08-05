@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.example.happybirthday.ui.theme.HappyBirthdayTheme
 
 class MainActivity : ComponentActivity() {
@@ -51,8 +52,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     GreetingImage(
                         stringResource(R.string.nome),
-                        stringResource(R.string.titulo)
+                        stringResource(R.string.titulo),
+                        stringResource(R.string.email),
+                        stringResource(R.string.numero)
                     )
+
                 }
             }
         }
@@ -60,7 +64,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
+fun GreetingText(message: String, from: String, email: String, numero: String, modifier: Modifier = Modifier) {
     // Create a column so that texts don't overlap
     Column(
         verticalArrangement = Arrangement.Center,
@@ -82,11 +86,29 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
                 .align(alignment = Alignment.CenterHorizontally)
 
         )
+        Text(
+            text = email,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .padding(end = 16.dp)
+                .align(alignment = Alignment.CenterHorizontally)
+
+        )
+        Text(
+            text = numero,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .padding(end = 16.dp)
+                .align(alignment = Alignment.CenterHorizontally)
+
+        )
     }
 }
 
 @Composable
-fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
+fun GreetingImage(message: String, from: String, email: String, numero: String, modifier: Modifier = Modifier) {
     // Create a box to overlap image and texts
     Box(modifier) {
         Image(
@@ -98,6 +120,8 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
         GreetingText(
             message = message,
             from = from,
+            email = email,
+            numero = numero,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(17.dp)
@@ -111,7 +135,9 @@ private fun BirthdayCardPreview() {
     HappyBirthdayTheme {
         GreetingImage(
             stringResource(R.string.nome),
-            stringResource(R.string.titulo)
+            stringResource(R.string.titulo),
+            stringResource(R.string.email),
+            stringResource(R.string.numero)
         )
     }
 }
